@@ -1,0 +1,19 @@
+W&D REFRIGERAÇÃO — SITE + PAINEL
+
+Arquivos:
+- index.html: catálogo público integrado ao Supabase.
+- admin/index.html: painel de login e cadastro/edição/ocultação/exclusão de produtos.
+
+Configuração atual:
+- O projeto Supabase e a chave publishable estão configurados nos dois HTMLs. A chave publishable pode aparecer no navegador; nunca coloque chave secret/service_role.
+- O painel usa login por e-mail e senha do Supabase Auth.
+- As imagens são enviadas ao bucket público chamado products.
+- A tabela esperada é public.products com as colunas que você confirmou.
+
+ANTES DE PUBLICAR:
+1. No Supabase, desative o cadastro público de usuários (Authentication > Settings > User Signups / Allow new users, desligado).
+2. Confirme que as políticas RLS da tabela products permitem SELECT público apenas para is_active=true e INSERT/UPDATE/DELETE somente para o usuário administrador.
+3. Confirme que as políticas de Storage do bucket products permitem leitura pública e upload/alteração/exclusão apenas ao administrador.
+4. Teste /admin com sua conta.
+
+Hospedagem estática: envie o conteúdo desta pasta para a raiz do site. O painel ficará em /admin/ (a hospedagem precisa servir admin/index.html para essa rota; alternativamente acesse /admin/index.html).
